@@ -1,5 +1,4 @@
-docuri
-======
+# docuri [![Build Status](https://travis-ci.org/jo/docuri.svg?branch=master)](https://travis-ci.org/jo/docuri)
 Rich document ids for CouchDB.
 
 `type/id/subtype/version/index`
