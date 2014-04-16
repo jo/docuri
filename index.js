@@ -30,31 +30,31 @@ exports.stringify = function(obj) {
   obj = obj || {};
 
   var parts = [];
-  if (obj.type) {
+  if (typeof obj.type !== 'undefined') {
     parts.push(obj.type);
   } else {
     if (obj.id || obj.subtype || obj.version || obj.index) parts.push('');
   }
 
-  if (obj.id) {
+  if (typeof obj.id !== 'undefined') {
     parts.push(obj.id);
   } else {
     if (obj.subtype || obj.version || obj.index) parts.push('');
   }
 
-  if (obj.subtype) {
+  if (typeof obj.subtype !== 'undefined') {
     parts.push(obj.subtype);
   } else {
     if (obj.version || obj.index) parts.push('');
   }
   
-  if (obj.version) {
+  if (typeof obj.version !== 'undefined') {
     parts.push(obj.version);
   } else {
     if (obj.index) parts.push('');
   }
 
-  if (obj.index) parts.push(obj.index);
+  if (typeof obj.index !== 'undefined') parts.push(obj.index);
 
   return parts.join('/');
 };

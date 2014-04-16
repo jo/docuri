@@ -127,3 +127,14 @@ test('type/id/subtype/version/index', function(t) {
   }), 'mytype/myid/mysubtype/myversion/myindex', 'should return string with type, id, subtype, version and index');
   t.end();
 });
+
+test('0/1/2/3/4', function(t) {
+  t.deepEqual(stringify({
+    type: 0,
+    id: 1,
+    subtype: 2,
+    version: 3,
+    index: 4 
+  }), '0/1/2/3/4', 'should correctly handle number path fields');
+  t.end();
+});
