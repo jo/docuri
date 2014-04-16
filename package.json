@@ -1,0 +1,27 @@
+{
+  "name": "docuri",
+  "version": "1.0.0",
+  "description": "Rich document ids for CouchDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*.js",
+    "jshint": "jshint index.js test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jo/docuri.git"
+  },
+  "keywords": [
+    "couchdb"
+  ],
+  "author": "Johannes J. Schmidt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jo/docuri/issues"
+  },
+  "homepage": "https://github.com/jo/docuri",
+  "devDependencies": {
+    "tap": "^0.4.8",
+    "jshint": "^2.5.0"
+  }
+}
