@@ -30,6 +30,16 @@ require('docuri').stringify({
 // 'mytype/myid/mysubtype/myversion/myindex'
 ```
 
+## Browser support
+To use docid in your client-side application, browserify it like this:
+
+```shell
+browserify -s DocURI path/to/docuri/index.js > path/to/your/assets
+
+```
+Once added to your DOM, this will leave you with a global DocURI object for use
+in your e.g.  Backbone Models/Collections.
+
 ## Development
 To run the unit tests:
 ```shell
