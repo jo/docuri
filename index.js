@@ -58,3 +58,13 @@ exports.stringify = function(obj) {
 
   return parts.join('/');
 };
+
+exports.merge = function(str, objToMerge) {
+  var obj = exports.parse(str);
+  for (var prop in objToMerge) {
+    if (['type', 'id', 'subtype', 'version', 'index'].indexOf(prop) > -1) {
+      obj[prop] = objToMerge[prop];
+    }
+  }
+  return exports.stringify(obj);
+};
