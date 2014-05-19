@@ -30,6 +30,14 @@ require('docuri').stringify({
 // 'mytype/myid/mysubtype/myversion/myindex'
 ```
 
+Change id string components:
+```js
+require('docuri').merge('mytype/myid/mysubtype/myversion/myindex', {
+  type: 'my_new_type',
+});
+// 'my_new_type/myid/mysubtype/myversion/myindex'
+
+
 ## Browser support
 To use docid in your client-side application, browserify it like this:
 
