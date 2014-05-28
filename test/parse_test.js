@@ -33,23 +33,23 @@ test('type/id/subtype', function(t) {
   t.end();
 });
 
-test('type/id/subtype/version', function(t) {
-  t.deepEqual(parse('mytype/myid/mysubtype/myversion'), {
+test('type/id/subtype/index', function(t) {
+  t.deepEqual(parse('mytype/myid/mysubtype/myindex'), {
     type: 'mytype',
     id: 'myid',
     subtype: 'mysubtype',
-    version: 'myversion'
-  }, 'should return object with type, id, subtype and version');
+    index: 'myindex'
+  }, 'should return object with type, id, subtype and index');
   t.end();
 });
 
-test('type/id/subtype/version/index', function(t) {
-  t.deepEqual(parse('mytype/myid/mysubtype/myversion/myindex'), {
+test('type/id/subtype/index/version', function(t) {
+  t.deepEqual(parse('mytype/myid/mysubtype/myindex/myversion'), {
     type: 'mytype',
     id: 'myid',
     subtype: 'mysubtype',
-    version: 'myversion',
-    index: 'myindex'
-  }, 'should return object with type, id, subtype, version and index');
+    index: 'myindex',
+    version: 'myversion'
+  }, 'should return object with type, id, subtype, index and version');
   t.end();
 });

@@ -1,20 +1,20 @@
 # docuri [![Build Status](https://travis-ci.org/jo/docuri.svg?branch=master)](https://travis-ci.org/jo/docuri)
 Rich document ids for CouchDB.
 
-`type/id/subtype/version/index`
+`type/id/subtype/index/version`
 
-eg `movie/blade-runner/gallery-image/medium/12`
+eg `movie/blade-runner/gallery-image/12/medium`
 
 ## Usage
 Parse id string:
 ```js
-require('docuri').parse('mytype/myid/mysubtype/myversion/myindex');
+require('docuri').parse('mytype/myid/mysubtype/myindex/myversion');
 // {
 //   type: 'mytype',
 //   id: 'myid',
 //   subtype: 'mysubtype',
-//   version: 'myversion',
-//   index: 'myindex'
+//   index: 'myindex',
+//   version: 'myversion'
 // }
 ```
 
@@ -24,18 +24,18 @@ require('docuri').stringify({
   type: 'mytype',
   id: 'myid',
   subtype: 'mysubtype',
-  version: 'myversion',
-  index: 'myindex'
+  index: 'myindex',
+  version: 'myversion'
 });
-// 'mytype/myid/mysubtype/myversion/myindex'
+// 'mytype/myid/mysubtype/myindex/myversion'
 ```
 
 Change id string components:
 ```js
-require('docuri').merge('mytype/myid/mysubtype/myversion/myindex', {
+require('docuri').merge('mytype/myid/mysubtype/myindex/myversion', {
   type: 'my_new_type',
 });
-// 'my_new_type/myid/mysubtype/myversion/myindex'
+// 'my_new_type/myid/mysubtype/myindex/myversion'
 ```
 
 ## Browser support

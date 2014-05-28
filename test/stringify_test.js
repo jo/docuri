@@ -58,73 +58,73 @@ test('type/id/subtype', function(t) {
 });
 
 
-test('/id/subtype/version', function(t) {
+test('/id/subtype/index', function(t) {
   t.deepEqual(stringify({
     id: 'myid',
     subtype: 'mysubtype',
-    version: 'myversion'
-  }), '/myid/mysubtype/myversion', 'should return string with type, id, subtype and version');
+    index: 'myindex'
+  }), '/myid/mysubtype/myindex', 'should return string with type, id, subtype and index');
   t.end();
 });
 
-test('type//subtype/version', function(t) {
+test('type//subtype/index', function(t) {
   t.deepEqual(stringify({
     type: 'mytype',
     subtype: 'mysubtype',
-    version: 'myversion'
-  }), 'mytype//mysubtype/myversion', 'should return string with type, id, subtype and version');
+    index: 'myindex'
+  }), 'mytype//mysubtype/myindex', 'should return string with type, id, subtype and index');
   t.end();
 });
 
-test('type///version', function(t) {
+test('type///index', function(t) {
   t.deepEqual(stringify({
     type: 'mytype',
-    version: 'myversion'
-  }), 'mytype///myversion', 'should return string with type, id, subtype and version');
+    index: 'myindex'
+  }), 'mytype///myindex', 'should return string with type, id, subtype and index');
   t.end();
 });
 
-test('//subtype/version', function(t) {
+test('//subtype/index', function(t) {
   t.deepEqual(stringify({
     subtype: 'mysubtype',
-    version: 'myversion'
-  }), '//mysubtype/myversion', 'should return string with type, id, subtype and version');
+    index: 'myindex'
+  }), '//mysubtype/myindex', 'should return string with type, id, subtype and index');
   t.end();
 });
 
-test('///version', function(t) {
-  t.deepEqual(stringify({
-    version: 'myversion'
-  }), '///myversion', 'should return string with type, id, subtype and version');
-  t.end();
-});
-
-test('type/id/subtype/version', function(t) {
-  t.deepEqual(stringify({
-    type: 'mytype',
-    id: 'myid',
-    subtype: 'mysubtype',
-    version: 'myversion'
-  }), 'mytype/myid/mysubtype/myversion', 'should return string with type, id, subtype and version');
-  t.end();
-});
-
-
-test('////index', function(t) {
+test('///index', function(t) {
   t.deepEqual(stringify({
     index: 'myindex'
-  }), '////myindex', 'should return string with type, id, subtype, version and index');
+  }), '///myindex', 'should return string with type, id, subtype and index');
   t.end();
 });
 
-test('type/id/subtype/version/index', function(t) {
+test('type/id/subtype/index', function(t) {
   t.deepEqual(stringify({
     type: 'mytype',
     id: 'myid',
     subtype: 'mysubtype',
-    version: 'myversion',
     index: 'myindex'
-  }), 'mytype/myid/mysubtype/myversion/myindex', 'should return string with type, id, subtype, version and index');
+  }), 'mytype/myid/mysubtype/myindex', 'should return string with type, id, subtype and index');
+  t.end();
+});
+
+
+test('////version', function(t) {
+  t.deepEqual(stringify({
+    version: 'myversion'
+  }), '////myversion', 'should return string with type, id, subtype, index and version');
+  t.end();
+});
+
+test('type/id/subtype/index/version', function(t) {
+  t.deepEqual(stringify({
+    type: 'mytype',
+    id: 'myid',
+    subtype: 'mysubtype',
+    index: 'myindex',
+    version: 'myversion'
+  }), 'mytype/myid/mysubtype/myindex/myversion', 'should return string with type, id, subtype, index and version');
   t.end();
 });
 
@@ -133,8 +133,8 @@ test('0/1/2/3/4', function(t) {
     type: 0,
     id: 1,
     subtype: 2,
-    version: 3,
-    index: 4 
+    index: 3,
+    version: 4 
   }), '0/1/2/3/4', 'should correctly handle number path fields');
   t.end();
 });
