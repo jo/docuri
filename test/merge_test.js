@@ -1,5 +1,3 @@
-'use strict';
-
 var test = require('tap').test;
 var merge = require('..').merge;
 

@@ -8,8 +8,18 @@
 // type/id/subtype/index/version
 var PARTS = ['type', 'id', 'subtype', 'index', 'version'];
 
+function docuri(parts) {
+  if (parts) {
+    PARTS = parts;
 
-exports.parse = function(str) {
+    return docuri;
+  }
+
+  return PARTS;
+}
+
+
+docuri.parse = function(str) {
   str = str || '';
 
   return str.split('/').reduce(function(obj, value, i) {
@@ -21,7 +31,7 @@ exports.parse = function(str) {
   }, {});
 };
 
-exports.stringify = function(obj) {
+docuri.stringify = function(obj) {
   obj = obj || {};
 
   return PARTS.map(function(part) {
@@ -29,10 +39,10 @@ exports.stringify = function(obj) {
   }).join('/').replace(/\/+$/, '');
 };
 
-exports.merge = function(str, objToMerge) {
+docuri.merge = function(str, objToMerge) {
   objToMerge = objToMerge || {};
 
-  var obj = exports.parse(str);
+  var obj = docuri.parse(str);
 
   PARTS.forEach(function(part) {
     if (objToMerge[part]) {
@@ -40,5 +50,9 @@ exports.merge = function(str, objToMerge) {
     }
   });
 
-  return exports.stringify(obj);
+  return docuri.stringify(obj);
 };
+
+
+module.exports = docuri;
+

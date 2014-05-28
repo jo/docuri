@@ -1,14 +1,25 @@
 # docuri [![Build Status](https://travis-ci.org/jo/docuri.svg?branch=master)](https://travis-ci.org/jo/docuri)
-Rich document ids for CouchDB.
+Rich document ids for CouchDB:
 
 `type/id/subtype/index/version`
 
-eg `movie/blade-runner/gallery-image/12/medium`
+For example: `movie/blade-runner/gallery-image/12/medium`
+
+Docuris have many advantages:
+* You can access the doc type (eg. in changes feed)
+* They sort well in Futon
+* They tell a lot about the document
+* You can rely on a schema and construct ids of dependend documents (eg. a specific version of an image)
+* You can easily delete related documents (eg. by requesting a range from `_all_docs`)
+and I'm sure I forgot to mention the best...
+
+Give Docuris a try!
 
 ## Usage
 Parse id string:
 ```js
-require('docuri').parse('mytype/myid/mysubtype/myindex/myversion');
+var docuri = require('docuri');
+docuri.parse('mytype/myid/mysubtype/myindex/myversion');
 // {
 //   type: 'mytype',
 //   id: 'myid',
@@ -20,7 +31,7 @@ require('docuri').parse('mytype/myid/mysubtype/myindex/myversion');
 
 Build id string from object:
 ```js
-require('docuri').stringify({
+docuri.stringify({
   type: 'mytype',
   id: 'myid',
   subtype: 'mysubtype',
@@ -32,10 +43,28 @@ require('docuri').stringify({
 
 Change id string components:
 ```js
-require('docuri').merge('mytype/myid/mysubtype/myindex/myversion', {
+docuri.merge('mytype/myid/mysubtype/myindex/myversion', {
   type: 'my_new_type',
 });
 // 'my_new_type/myid/mysubtype/myindex/myversion'
+```
+
+Use custom definition:
+```js
+docuri(['id', 'meta']).parse('42/answer');
+// {
+//   id: '42',
+//   meta: 'answer'
+// }
+```
+
+Access current definition:
+```js
+docuri();
+// ['type', 'id', 'subtype', 'index', 'version']
+docuri(['id', 'meta']);
+docuri();
+// ['id', 'meta']
 ```
 
 ## Browser support
@@ -52,11 +81,6 @@ in your e.g.  Backbone Models/Collections.
 To run the unit tests:
 ```shell
 npm test
-```
-
-For JShint:
-```shell
-npm run jshint
 ```
 
 ## License
