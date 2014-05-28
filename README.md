@@ -1,7 +1,9 @@
 # docuri [![Build Status](https://travis-ci.org/jo/docuri.svg?branch=master)](https://travis-ci.org/jo/docuri)
 Rich document ids for CouchDB:
 
-`type/id/subtype/index/version`
+```
+type/id/subtype/index/version
+```
 
 For example: `movie/blade-runner/gallery-image/12/medium`
 
@@ -11,7 +13,8 @@ Docuris have many advantages:
 * They tell a lot about the document
 * You can rely on a schema and construct ids of dependend documents (eg. a specific version of an image)
 * You can easily delete related documents (eg. by requesting a range from `_all_docs`)
-and I'm sure I forgot to mention the best...
+ 
+...and I'm sure I forgot to mention the best.
 
 Give Docuris a try!
 
