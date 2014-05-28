@@ -54,20 +54,16 @@ docuri.merge('mytype/myid/mysubtype/myindex/myversion', {
 
 Use custom definition:
 ```js
-docuri(['id', 'meta']).parse('42/answer');
-// {
-//   id: '42',
-//   meta: 'answer'
-// }
-```
-
-Access current definition:
-```js
 docuri();
 // ['type', 'id', 'subtype', 'index', 'version']
 docuri(['id', 'meta']);
 docuri();
 // ['id', 'meta']
+docuri.parse('42/answer');
+// {
+//   id: '42',
+//   meta: 'answer'
+// }
 ```
 
 ## Browser support
