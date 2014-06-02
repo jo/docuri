@@ -6,25 +6,41 @@
 */
 
 // type/id/subtype/index/version
-var PARTS = ['type', 'id', 'subtype', 'index', 'version'];
+var DEFINITION = ['type', 'id', 'subtype', 'index', 'version'];
 
-function docuri(parts) {
-  if (parts) {
-    PARTS = parts;
+function docuri(definition) {
+  if (definition) {
+    DEFINITION = definition;
 
     return docuri;
   }
 
-  return PARTS;
+  return DEFINITION;
 }
 
+
+docuri.parts = function(obj) {
+  if (typeof obj === 'string') {
+    obj = docuri.parse(obj);
+  }
+
+  var parts = DEFINITION.map(function(part) {
+    return obj[part];
+  });
+
+  while (parts.length && typeof parts[parts.length - 1] === 'undefined') {
+    parts.pop();
+  }
+
+  return parts;
+};
 
 docuri.parse = function(str) {
   str = str || '';
 
   return str.split('/').reduce(function(obj, value, i) {
     if (value) {
-      obj[PARTS[i]] = value;
+      obj[DEFINITION[i]] = value;
     }
 
     return obj;
@@ -34,23 +50,31 @@ docuri.parse = function(str) {
 docuri.stringify = function(obj) {
   obj = obj || {};
 
-  return PARTS.map(function(part) {
-    return typeof obj[part] === 'undefined' ? '' : obj[part];
-  }).join('/').replace(/\/+$/, '');
+  return docuri.parts(obj).join('/');
 };
 
-docuri.merge = function(str, objToMerge) {
+docuri.merge = function(obj, objToMerge) {
   objToMerge = objToMerge || {};
 
-  var obj = docuri.parse(str);
+  if (typeof obj === 'string') {
+    obj = docuri.parse(obj);
+  }
 
-  PARTS.forEach(function(part) {
+  DEFINITION.forEach(function(part) {
     if (objToMerge[part]) {
       obj[part] = objToMerge[part];
     }
   });
 
   return docuri.stringify(obj);
+};
+
+docuri.arity = function(obj) {
+  if (typeof obj === 'string') {
+    obj = docuri.parse(obj);
+  }
+
+  return docuri.parts(obj).length;
 };
 
 

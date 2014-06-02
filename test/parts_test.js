@@ -1,28 +1,36 @@
 var test = require('tap').test;
-var docuri = require('..');
+var parts = require('..').parts;
 
-test('default configuration', function(t) {
-  t.deepEqual(docuri(), ['type', 'id', 'subtype', 'index', 'version'], 'should return default parts');
+test('parts of type string', function(t) {
+  t.deepEqual(parts('type'), ['type'], 'should return array including type');
+  t.end();
+});
+test('parts of type/id string', function(t) {
+  t.deepEqual(parts('type/id'), ['type', 'id'], 'should return array including type and id');
+  t.end();
+});
+test('parts of type/id/subtype string', function(t) {
+  t.deepEqual(parts('type/id/subtype'), ['type', 'id', 'subtype'], 'should return array including type, id and subtype');
+  t.end();
+});
+test('parts of type//subtype string', function(t) {
+  t.deepEqual(parts('type//subtype'), ['type', undefined, 'subtype'], 'should return array including type, undefined and subtype');
   t.end();
 });
 
-test('set configuration', function(t) {
-  var parts = ['my', 'parts'];
-  t.type(docuri(parts).merge, 'function', 'should return docuri api: merge');
-  t.type(docuri(parts).parse, 'function', 'should return docuri api: parse');
-  t.type(docuri(parts).stringify, 'function', 'should return docuri api: stringify');
+test('parts of type object', function(t) {
+  t.deepEqual(parts({ type: 'type' }), ['type'], 'should return array including type');
   t.end();
 });
-
-test('change configuration', function(t) {
-  var parts = ['my', 'parts'];
-  docuri(parts);
-  t.deepEqual(docuri(), parts, 'should return custom parts');
+test('parts of type/id object', function(t) {
+  t.deepEqual(parts({ type: 'type', id: 'id'}), ['type', 'id'], 'should return array including type and id');
   t.end();
 });
-
-test('use changed configuration', function(t) {
-  var parts = ['my', 'parts'];
-  t.deepEqual(docuri(parts).parse('one/two'), { my: 'one', parts: 'two'}, 'should use custom parts');
+test('parts of type/id/subtype object', function(t) {
+  t.deepEqual(parts({ type: 'type', id: 'id', subtype: 'subtype' }), ['type', 'id', 'subtype'], 'should return array including type, id and subtype');
+  t.end();
+});
+test('parts of type//subtype object', function(t) {
+  t.deepEqual(parts({ type: 'type', subtype: 'subtype' }), ['type', undefined, 'subtype'], 'should return array including type, undefined and subtype');
   t.end();
 });

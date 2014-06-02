@@ -38,3 +38,14 @@ test('missing second argument', function(t) {
 });
 
 
+test('changing type component using object', function(t) {
+  t.equal(merge({
+    type: 'type',
+    id: 'id',
+    subtype: 'subtype',
+    index: 'index',
+    version: 'version'
+  }, {type:'new_type'}), 'new_type/id/subtype/index/version', 'should return docuri string with type changed');
+  t.end();
+});
+

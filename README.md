@@ -19,6 +19,8 @@ Docuris have many advantages:
 Give Docuris a try!
 
 ## Usage
+
+### `parse(string)`
 Parse id string:
 ```js
 var docuri = require('docuri');
@@ -32,6 +34,7 @@ docuri.parse('mytype/myid/mysubtype/myindex/myversion');
 // }
 ```
 
+### `stringify(object)`
 Build id string from object:
 ```js
 docuri.stringify({
@@ -44,6 +47,7 @@ docuri.stringify({
 // 'mytype/myid/mysubtype/myindex/myversion'
 ```
 
+### `merge(objectOrString)`
 Change id string components:
 ```js
 docuri.merge('mytype/myid/mysubtype/myindex/myversion', {
@@ -52,6 +56,25 @@ docuri.merge('mytype/myid/mysubtype/myindex/myversion', {
 // 'my_new_type/myid/mysubtype/myindex/myversion'
 ```
 
+### `parts(objectOrString)`
+Array of components. Trailing `undefined` components are stripped off:
+```js
+docuri.parts('mytype/myid/');
+// ['mytype', 'myid']
+docuri.parts({ type: 'mytype', subtype: 'mysubtype' });
+// ['mytype', undefined, 'mysubtype']
+```
+
+### `arity(objectOrString)`
+Length of parts:
+```js
+docuri.arity('mytype/myid/');
+// 2 
+docuri.arity({ type: 'mytype', subtype: 'mysubtype' });
+// 3
+```
+
+### `docuri([definition])`
 Use custom definition:
 ```js
 docuri();
@@ -65,6 +88,8 @@ docuri.parse('42/answer');
 //   meta: 'answer'
 // }
 ```
+Note: `definition` MUST be an array of strings with at least one item.
+
 
 ## Browser support
 To use docid in your client-side application, browserify it like this:
