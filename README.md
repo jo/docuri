@@ -74,21 +74,21 @@ docuri.arity({ type: 'mytype', subtype: 'mysubtype' });
 // 3
 ```
 
-### `docuri([definition])`
-Use custom definition:
+### `docuri.definition([array])`
+Access or use custom definition:
 ```js
-docuri();
+docuri.definition();
 // ['type', 'id', 'subtype', 'index', 'version']
-docuri(['id', 'meta']);
-docuri();
-// ['id', 'meta']
-docuri.parse('42/answer');
+docuri
+  .definition(['id', 'meta'])
+  .parse('42/answer');
 // {
 //   id: '42',
 //   meta: 'answer'
 // }
 ```
-Note: `definition` MUST be an array of strings with at least one item.
+Note: the (optional) argument to `docuri.definition` MUST be an array of strings
+containing at least one item.
 
 
 ## Browser support

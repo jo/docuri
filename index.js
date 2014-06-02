@@ -7,8 +7,11 @@
 
 // type/id/subtype/index/version
 var DEFINITION = ['type', 'id', 'subtype', 'index', 'version'];
+var docuri;
 
-function docuri(definition) {
+module.exports = exports = docuri = {};
+
+docuri.definition = function(definition) {
   if (definition) {
     DEFINITION = definition;
 
