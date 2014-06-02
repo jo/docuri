@@ -72,14 +72,3 @@ docuri.merge = function(obj, objToMerge) {
   return docuri.stringify(obj);
 };
 
-docuri.arity = function(obj) {
-  if (typeof obj === 'string') {
-    obj = docuri.parse(obj);
-  }
-
-  return docuri.parts(obj).length;
-};
-
-
-module.exports = docuri;
-

@@ -65,15 +65,6 @@ docuri.parts({ type: 'mytype', subtype: 'mysubtype' });
 // ['mytype', undefined, 'mysubtype']
 ```
 
-### `arity(objectOrString)`
-Length of parts:
-```js
-docuri.arity('mytype/myid/');
-// 2 
-docuri.arity({ type: 'mytype', subtype: 'mysubtype' });
-// 3
-```
-
 ### `docuri.definition([array])`
 Access or use custom definition:
 ```js
