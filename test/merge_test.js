@@ -49,3 +49,14 @@ test('changing type component using object', function(t) {
   t.end();
 });
 
+test('removing component with undefined', function(t) {
+  t.equal(merge('type/id/subtype/index/version', {version:undefined}), 'type/id/subtype/index', 'should return docuri string with version removed');
+  t.end();
+});
+
+test('removing component with null', function(t) {
+  t.equal(merge('type/id/subtype/index/version', {version:null}), 'type/id/subtype/index', 'should return docuri string with version removed');
+  t.end();
+});
+
+

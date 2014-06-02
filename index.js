@@ -31,7 +31,7 @@ docuri.parts = function(obj) {
     return obj[part];
   });
 
-  while (parts.length && typeof parts[parts.length - 1] === 'undefined') {
+  while (parts.length && (typeof parts[parts.length - 1] === 'undefined' || parts[parts.length - 1] === null)) {
     parts.pop();
   }
 
@@ -64,7 +64,7 @@ docuri.merge = function(obj, objToMerge) {
   }
 
   DEFINITION.forEach(function(part) {
-    if (objToMerge[part]) {
+    if (part in objToMerge) {
       obj[part] = objToMerge[part];
     }
   });
