@@ -41,7 +41,7 @@ function routeToRegExp(src) {
   keys = keys.reduce(function(memo, key) {
     var value = '\\' + key;
 
-    memo[key] = new RegExp(value + '(\\/|\\)|$)');
+    memo[key] = new RegExp(value + '(\\/|\\)|\\(|$)');
 
     return memo;
   }, {});

@@ -18,3 +18,12 @@ test('two named parameters', function(t) {
 
   t.end();
 });
+
+test('named parameter followed by optional parameter', function(t) {
+  docuri.route('page/:id(/:optional)', 'page');
+
+  t.deepEqual(docuri.page('page/mypage'), { id: 'mypage' }, 'parsed page has "id" set to "mypage"');
+  t.equal(docuri.page({ id: 'mypage', optional: 'number' }), 'page/mypage/number', 'stringified page results in "page/mypage/number"');
+
+  t.end();
+});
