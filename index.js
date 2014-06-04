@@ -95,8 +95,9 @@ function insertParameters(route, obj) {
     str = str.replace(route.keys[key], value + '$1');
   });
 
+  // massage optional parameter
   return str
-    .replace(/\(\/\)$/g, '')
+    .replace(/\(\/\)(\/|$)/g, '$1')
     .replace(/[)(]/g, '');
 }
 
