@@ -18,25 +18,26 @@ var optionalParam = /\((.*?)\)/g;
 var namedParam    = /(\(\?)?:\w+/g;
 var splatParam    = /\*\w+/g;
 var escapeRegExp  = /[\-{}\[\]+?.,\\\^$|#\s]/g;
+var paramKeys     = /[*:]\w+/g;
 
 // Convert a route string into a regular expression,
 // with named regular expressions for named arguments.
 // http://backbonejs.org/docs/backbone.html#section-165
 function routeToRegExp(src) {
-  var keys = [];
+  var keys = [], match;
+
+  while ( ( match = paramKeys.exec( src ) ) !== null )
+  {
+    keys.push( match[0] );
+  }
 
   var route = src.replace(escapeRegExp, '\\$&')
     .replace(optionalParam, '(?:$1)?')
     .replace(namedParam, function(match, optional) {
-      keys.push(match);
 
       return optional ? match : '([^/?]+)';
     })
-    .replace(splatParam, function(match) {
-      keys.push(match);
-
-      return '([^?]*?)';
-    });
+    .replace(splatParam, '([^?]*?)');
 
   keys = keys.reduce(function(memo, key) {
     var value = '\\' + key;
