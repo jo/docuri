@@ -1,6 +1,6 @@
 {
   "name": "docuri",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "Rich document ids for CouchDB",
   "main": "index.js",
   "scripts": {
