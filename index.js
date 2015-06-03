@@ -9,8 +9,6 @@
 
 var docuri = module.exports = exports = {};
 
-var reservedNames = ['routes', 'route'];
-
 // Cached regular expressions for matching named param parts and splatted parts
 // of route strings.
 // http://backbonejs.org/docs/backbone.html#section-158
@@ -65,7 +63,7 @@ function extractParameters(route, fragment) {
   }
 
   params = params.slice(1);
-      
+
   return Object.keys(route.keys).reduce(function(memo, key, i) {
     var param = params[i];
 
@@ -103,22 +101,10 @@ function insertParameters(route, obj) {
 }
 
 
-// Map routes
-docuri.routes = function(map) {
-  Object.keys(map).forEach(function(route) {
-    docuri.route(route, map[route]);
-  });
-};
-
-// Manually bind a single named route
-docuri.route = function(route, name) {
-  if (reservedNames.indexOf(name) > -1) {
-    throw('Reserved name "' + name + '" cannot be used.');
-  }
-
+docuri.route = function(route) {
   route = routeToRegExp(route);
 
-  docuri[name] = function(source, target) {
+  return function(source, target) {
     source = source || {};
 
     if (target) {

@@ -2,26 +2,26 @@ var test = require('tap').test;
 var docuri = require('..');
 
 test('named parameter', function(t) {
-  docuri.route('page/:id', 'page');
+  var page = docuri.route('page/:id');
 
-  t.equal(docuri.page('page/mypage', { id: 'otherpage' }), 'page/otherpage', 'merged page has "id" set to "otherpage"');
+  t.equal(page('page/mypage', { id: 'otherpage' }), 'page/otherpage', 'merged page has "id" set to "otherpage"');
 
   t.end();
 });
 
 test('optional parameter', function(t) {
-  docuri.route('page(/:id)', 'page');
+  var page = docuri.route('page(/:id)');
 
-  t.deepEqual(docuri.page('page/mypage'), { id: 'mypage' }, 'parsed page has "id" set to "mypage"');
-  t.equal(docuri.page('page/mypage', { id: 'otherpage' }), 'page/otherpage', 'merged page has "id" set to "otherpage"');
+  t.deepEqual(page('page/mypage'), { id: 'mypage' }, 'parsed page has "id" set to "mypage"');
+  t.equal(page('page/mypage', { id: 'otherpage' }), 'page/otherpage', 'merged page has "id" set to "otherpage"');
 
   t.end();
 });
 
 test('two named parameters', function(t) {
-  docuri.route('page/:page_id/content/:id', 'content');
+  var content = docuri.route('page/:page_id/content/:id');
 
-  t.equal(docuri.content('page/mypage/content/mycontent', { id: 'othercontent' }), 'page/mypage/content/othercontent', 'merged content has "id" set to "othercontent"');
+  t.equal(content('page/mypage/content/mycontent', { id: 'othercontent' }), 'page/mypage/content/othercontent', 'merged content has "id" set to "othercontent"');
 
   t.end();
 });

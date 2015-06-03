@@ -2,28 +2,28 @@ var test = require('tap').test;
 var docuri = require('..');
 
 test('named parameter', function(t) {
-  docuri.route('page/:id', 'page');
+  var page = docuri.route('page/:id');
 
-  t.deepEqual(docuri.page('page/mypage'), { id: 'mypage' }, 'parsed page has "id" set to "mypage"');
-  t.equal(docuri.page({ id: 'mypage' }), 'page/mypage', 'stringified page results in "page/mypage"');
+  t.deepEqual(page('page/mypage'), { id: 'mypage' }, 'parsed page has "id" set to "mypage"');
+  t.equal(page({ id: 'mypage' }), 'page/mypage', 'stringified page results in "page/mypage"');
 
   t.end();
 });
 
 test('two named parameters', function(t) {
-  docuri.route('page/:page_id/content/:id', 'content');
+  var content = docuri.route('page/:page_id/content/:id');
 
-  t.deepEqual(docuri.content('page/mypage/content/mycontent'), { page_id: 'mypage', id: 'mycontent' }, 'parsed content has "page_id" set to "mypage" and "id" set to "mycontent"');
-  t.equal(docuri.content({ page_id: 'mypage', id: 'mycontent' }), 'page/mypage/content/mycontent', 'stringified content results in "page/mypage/content/mycontent"');
+  t.deepEqual(content('page/mypage/content/mycontent'), { page_id: 'mypage', id: 'mycontent' }, 'parsed content has "page_id" set to "mypage" and "id" set to "mycontent"');
+  t.equal(content({ page_id: 'mypage', id: 'mycontent' }), 'page/mypage/content/mycontent', 'stringified content results in "page/mypage/content/mycontent"');
 
   t.end();
 });
 
 test('named parameter followed by optional parameter', function(t) {
-  docuri.route('page/:id(/:optional)', 'page');
+  var page = docuri.route('page/:id(/:optional)');
 
-  t.deepEqual(docuri.page('page/mypage'), { id: 'mypage' }, 'parsed page has "id" set to "mypage"');
-  t.equal(docuri.page({ id: 'mypage', optional: 'number' }), 'page/mypage/number', 'stringified page results in "page/mypage/number"');
+  t.deepEqual(page('page/mypage'), { id: 'mypage' }, 'parsed page has "id" set to "mypage"');
+  t.equal(page({ id: 'mypage', optional: 'number' }), 'page/mypage/number', 'stringified page results in "page/mypage/number"');
 
   t.end();
 });
