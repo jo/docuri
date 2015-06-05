@@ -19,6 +19,14 @@ test('two named parameters', function(t) {
   t.end();
 });
 
+test('named parameters replaced all at once', function(t) {
+  var page = docuri.route('page/:id/:bar');
+
+  t.equal(page({ id: ':bar', bar: 'foo' }), 'page/:bar/foo', 'url built correctly, no conflicts', { todo: true });
+
+  t.end();
+});
+
 test('named parameter followed by optional parameter', function(t) {
   var page = docuri.route('page/:id(/:optional)');
 
