@@ -43,3 +43,11 @@ test('named parameter with slash in the content', function(t) {
 
   t.end();
 });
+
+test('named parameter with parens in the content', function(t) {
+  var page = docuri.route('page/:id');
+
+  t.deepEqual(page(page({ id: 'value(slash)' })), { id: 'value(slash)' }, 'parsed page has parens  set back correctly', { todo: true });
+
+  t.end();
+});
