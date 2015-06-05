@@ -68,9 +68,13 @@ function extractParameters(route, fragment) {
     var param = params[i];
 
     if (param) {
+
       if (key[0] === '*') {
-        param = param.split('/');
+        param = param.split('/').map(decodeURIComponent);
+      } else {
+        param = decodeURIComponent(param);
       }
+
 
       memo[key.substr(1)] = param;
     }
@@ -88,7 +92,9 @@ function insertParameters(route, obj) {
     var value = obj[k] || '';
 
     if (Array.isArray(value)) {
-      value = value.join('/');
+      value = value.map(encodeURIComponent).join('/');
+    } else {
+      value = encodeURIComponent(value);
     }
 
     str = str.replace(route.keys[key], value + '$1');

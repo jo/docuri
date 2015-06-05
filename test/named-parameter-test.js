@@ -27,3 +27,19 @@ test('named parameter followed by optional parameter', function(t) {
 
   t.end();
 });
+
+test('named parameter with colon in the content', function(t) {
+  var page = docuri.route('page/:id');
+
+  t.deepEqual(page(page({ id: 'value:colon' })), { id: 'value:colon' }, 'parsed page has colon set back correctly');
+
+  t.end();
+});
+
+test('named parameter with slash in the content', function(t) {
+  var page = docuri.route('page/:id');
+
+  t.deepEqual(page(page({ id: 'value/slash' })), { id: 'value/slash' }, 'parsed page has slash set back correctly');
+
+  t.end();
+});
