@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/jo/docuri",
   "devDependencies": {
+    "shuffle-array": "^0.1.0",
     "tap": "^0.4.8"
   }
 }
