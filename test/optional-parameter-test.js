@@ -22,3 +22,14 @@ test('surrounded optional parameter', function(t) {
 
   t.end();
 });
+
+test('optional parameter with trailing slash', function(t) {
+  var page = docuri.route('(:id/)page');
+
+  t.deepEqual(page('page'), {}, 'parsed page returns empty object');
+  t.deepEqual(page('mypage/page'), { id: 'mypage' }, 'parsed page has "id" set to "mypage"');
+  t.equal(page(), 'page', 'stringified empty page results in "page"');
+  t.equal(page({ id: 'mypage' }), 'mypage/page', 'stringified page results in "mypage/page"');
+
+  t.end();
+});
