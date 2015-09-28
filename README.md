@@ -119,5 +119,5 @@ npm test
 
 ## License
 Copyright (c) 2014 Johannes J. Schmidt, null2 GmbH   
-Licensed under the MIT license.
+Licensed under the Apache 2.0 license.
 
