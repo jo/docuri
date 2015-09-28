@@ -1,14 +1,14 @@
 {
   "name": "docuri",
-  "version": "4.1.1",
   "description": "Rich document ids for CouchDB",
   "main": "index.js",
   "scripts": {
-    "test": "tap test/*.js"
+    "test": "tap test/*.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/jo/docuri.git"
+    "url": "https://github.com/jo/docuri.git"
   },
   "keywords": [
     "couchdb"
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/jo/docuri",
   "devDependencies": {
     "shuffle-array": "^0.1.0",
-    "tap": "^0.4.8"
+    "tap": "^0.4.8",
+    "semantic-release": "^4.3.5"
   }
 }
