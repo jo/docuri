@@ -21,7 +21,7 @@
   "homepage": "https://github.com/jo/docuri",
   "devDependencies": {
     "shuffle-array": "^0.1.0",
-    "tap": "^2.1.1",
+    "tap": "^3.0.0",
     "semantic-release": "^6.0.3"
   }
 }
