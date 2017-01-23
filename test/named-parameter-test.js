@@ -10,6 +10,18 @@ test('named parameter', function(t) {
   t.end();
 });
 
+test('insert falsy parameter values', function(t) {
+  var page = docuri.route('page/:id');
+
+  t.deepEqual(page({}), 'page/', 'stringifies without id');
+  t.deepEqual(page({id: undefined}), 'page/', 'stringifies without id');
+  t.deepEqual(page({id: 0}), 'page/0', 'inserts "0"');
+  t.deepEqual(page({id: false}), 'page/false', 'inserts "false"');
+  t.deepEqual(page({id: null}), 'page/null', 'inserts "null"');
+
+  t.end();
+});
+
 test('two named parameters', function(t) {
   var content = docuri.route('page/:page_id/content/:id');
 
