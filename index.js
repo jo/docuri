@@ -89,7 +89,7 @@ function insertParameters(route, obj) {
 
   Object.keys(route.keys).forEach(function(key) {
     var k = key.substr(1);
-    var value = obj[k] || '';
+    var value = (obj[k] !== undefined) ? obj[k] : '';
 
     if (Array.isArray(value)) {
       value = value.map(encodeURIComponent).join('/');
